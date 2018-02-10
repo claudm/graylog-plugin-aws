@@ -80,7 +80,7 @@ Aqui estão as permissões IAM necessárias caso você decida usar esse recurso:
 
 Os exemplos de integração e análise do Flow Logs estão descritos em [neste post no blog www.itculate.io](https://www.itculate.io/documentation/knowledge-base/kb-0109/).
 
-### Step 1: Enable Flow Logs
+### Passo 1: Habilitar Flow Logs
 
 Há duas maneiras de ativar o Flow Logs para uma interface de rede AWS:
 
