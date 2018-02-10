@@ -1,16 +1,16 @@
-# AWS Plugin For Graylog
+﻿# Plug-in AWS para Graylog
 
 [![Build Status](https://travis-ci.org/Graylog2/graylog-plugin-aws.svg)](https://travis-ci.org/Graylog2/graylog-plugin-aws)
 [![Github Downloads](https://img.shields.io/github/downloads/Graylog2/graylog-plugin-aws/total.svg)](https://github.com/Graylog2/graylog-plugin-aws/releases)
 [![GitHub Release](https://img.shields.io/github/release/Graylog2/graylog-plugin-aws.svg)](https://github.com/Graylog2/graylog-plugin-aws/releases)
 
-This plugin provides the following Graylog modules:
+Este plugin fornece os seguintes módulos Graylog:
 
-* Input plugin for [AWS Flow Logs](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/flow-logs.html) network interface connection logs
-* Input plugin for [AWS Logs](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/WhatIsCloudWatchLogs.html)
-* Input plugin for [AWS CloudTrail](http://aws.amazon.com/cloudtrail/) logs
+* plugin Input para [AWS Flow Logs](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/flow-logs.html) logs de conexão de interface de rede
+* plugin Input para [AWS Logs](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/WhatIsCloudWatchLogs.html)
+* plugin Input para [AWS CloudTrail](http://aws.amazon.com/cloudtrail/) logs
 
-Graylog Version Compatibility
+Compatibilidade da versão do Graylog
 -----------------------------
 
 | Plugin Version | Graylog Version |
@@ -21,32 +21,29 @@ Graylog Version Compatibility
 | 1.2.1          | 2.1.3           |
 | 0.6.0          | 2.0.x           |
 
-## Installation
+## Instalação
 
-> Since Graylog Version 2.4.0 this plugin is already included in the Graylog server installation package as default plugin.
+> Desde Graylog Versão 2.4.0 este plugin já está incluído no pacote de instalação do servidor Graylog como plugin padrão.
 
-[Download the plugin](https://github.com/Graylog2/graylog-plugin-aws/releases)
-and place the `.jar` file in your Graylog plugin directory. The plugin directory
-is the `plugins/` folder relative from your `graylog-server` directory by default
-and can be configured in your `graylog.conf` file.
+[Baixe o plugin](https://github.com/Graylog2/graylog-plugin-aws/releases)
+e coloque o arquivo `.jar`   no seu diretório de plugins do Graylog. O diretório de plugin é a pasta relativa `plugins/`  de seu diretório do  `graylog-server`  por  padrão e pode ser configurado no seu arquivo `graylog.conf`.
 
-Restart `graylog-server` and you are done.
+Reinicie `graylog-server` e  e pronto.
 
-## General setup
+## Configuração geral
 
-After installing the plugin you will have a new cluster configuration section at “System -> Configurations” in your Graylog Web Interface. Make sure to complete the configuration before using any of the modules this plugin provides. You’ll see a lot of warnings in your `graylog-server` log file if you fail to do so.
+Depois de instalar o plugin, você terá uma nova seção de configuração do cluster em  “System -> Configurations” na sua interface  Web do seu Graylog. Certifique-se de completar a configuração antes de usar qualquer um dos módulos que este plugin fornece. Você verá muitos avisos no arquivo de log do `graylog-server` se você não conseguir fazê-lo.
 
-Note that the AWS access and secret key are currently not stored encrypted. This feature is following shortly and before the final release of v1.0 of this plugin. (in a few days)
 
-### AWS entity translation
+### Tradução da entidade AWS
 
-The configuration of this plugin has a parameter that controls if AWS entity translations are supposed to be attempted or not. This basically means that the plugin will try to find certain fields like a source IP address and enrich the log message with more information about the AWS entity (like a EC2 box, an ELB instance, a RDS database, …) automatically.
+A configuração deste plugin possui um parâmetro que controla se as informações do recurso AWS estão sendo executadas  ou não. Isso basicamente significa que o plugin tentará encontrar determinados campos como um endereço IP de origem e enriquecer a mensagem de log com mais informações sobre o recurso AWS (como um  EC2, uma instância ELB, um banco de dados RDS, ...) automaticamente.
 
-This would look something like this:
+Isso seria algo assim:
 
 [![](https://s3.amazonaws.com/graylog2public/aws_translation.jpg)](https://s3.amazonaws.com/graylog2public/aws_translation.jpg)
 
-Here are required IAM permissions in case you decide to use this feature:
+Aqui estão as permissões IAM necessárias caso você decida usar esse recurso:
 
 ```
 {
@@ -79,61 +76,61 @@ Here are required IAM permissions in case you decide to use this feature:
 }
 ```
 
-## FlowLogs setup and configuration
+## configuração do FlowLogs
 
-The Flow Logs integration and analysis examples are described in [this graylog.org blog post](https://www.graylog.org/blog/62-a-practical-approach-to-open-source-network-security).
+Os exemplos de integração e análise do Flow Logs estão descritos em [neste post no blog www.itculate.io](https://www.itculate.io/documentation/knowledge-base/kb-0109/).
 
 ### Step 1: Enable Flow Logs
 
-There are two ways to enable Flow Logs for an AWS network interface:
+Há duas maneiras de ativar o Flow Logs para uma interface de rede AWS:
 
-For a specific network interface in your EC2 console, under the “Network Interfaces” main navigation link:
+Pela  interface de rede específica no seu console EC2,“Network Interfaces” no link de navegação principal
 
 [![](https://s3.amazonaws.com/graylog2public/flowlogs_1.jpg)](https://s3.amazonaws.com/graylog2public/flowlogs_1.jpg)
 
-… or for all network interfaces in your VPC using the VPC console:
+… ou para todas as interfaces de rede em sua VPC usando o console VPC:
 
 [![](https://s3.amazonaws.com/graylog2public/flowlogs_3.jpg)](https://s3.amazonaws.com/graylog2public/flowlogs_3.jpg)
 
-After a few minutes (usually 15 minutes but it can take up to an hour), AWS will start writing Flow Logs and you can view them in your CloudWatch console:
+Após alguns minutos (geralmente 15 minutos, mas pode demorar até uma hora), a AWS começará a escrever o Flow Logs e você pode visualizá-los no seu console CloudWatch:
 
 [![](https://s3.amazonaws.com/graylog2public/flowlogs_2.jpg)](https://s3.amazonaws.com/graylog2public/flowlogs_2.jpg)
 
-Now let’s go on and instruct AWS to write the FlowLogs to a [Kinesis](https://aws.amazon.com/kinesis/) stream.
+Agora vamos continuar instruindo AWS para escrever o FlowLogs para um Stream [Kinesis](https://aws.amazon.com/kinesis/) .
 
-### Steps 2: Set up Kinesis stream
+### Passos 2: configurar o Stream do Kinesis
 
-Create a [Kinesis](https://aws.amazon.com/kinesis/) stream using the AWS CLI tools:
+Criar um Stream [Kinesis](https://aws.amazon.com/kinesis/) usando as ferramentas AWS CLI:
 
     aws kinesis create-stream --stream-name "flowlogs" --shard-count 1
 
-Now get the Stream details:
+Agora receba os detalhes do Stream:
 
     aws kinesis describe-stream --stream-name "flowlogs"
 
-**Copy the StreamARN from the output.** We'll need it later.
+**Copie o StreamARN da saída.** Nós precisaremos dele mais tarde.
 
-Next, create a file called _trust_policy.json_ with the following content:
+Em seguida, crie um arquivo chamado _trust_policy.json_ com o seguinte conteúdo:
 
 ```
 {
   "Statement": {
     "Effect": "Allow",
-    "Principal": { "Service": "logs.eu-west-1.amazonaws.com" },
+    "Principal": { "Service": "logs.us-east-1.amazonaws.com" },
     "Action": "sts:AssumeRole"
   }
 }
 ```
 
-**Make sure to change the _Service_ from _eu-west-1_ to the Region you are running in.**
+**Certifique-se de alterar o Service de us-east-1 para a Região em que você está executando.**
 
-Now create a a new IAM role with the permissions in the file we just created:
+Agora, crie uma nova função IAM com as permissões no arquivo que acabamos de criar:
 
     aws iam create-role --role-name CWLtoKinesisRole --assume-role-policy-document file://trust_policy.json
 
-**Copy the ARN of the role you just created.** You'll need it in the next step.
+**Copie o ARN da role que você acabou de criar.** Você vai precisar disso no próximo passo.
 
-Create a new file called _permissions.json_ and set both ARNs to the ARNs your copied above:
+Crie um novo arquivo chamado _permissions.json_ e defina ambos ARNs para os ARNs copiados acima:
 
 ```
 {
@@ -141,39 +138,39 @@ Create a new file called _permissions.json_ and set both ARNs to the ARNs your c
     {
       "Effect": "Allow",
       "Action": "kinesis:PutRecord",
-      "Resource": "[YOUR KINESIS STREAM ARN HERE]"
+      "Resource": "[SUA ARN DO STREAM DO KINESIS AQUI]"
     },
     {
       "Effect": "Allow",
       "Action": "iam:PassRole",
-      "Resource": "[YOUR IAM ARN HERE]"
+      "Resource": "[SUA ARN DO IAM AQUI]"
     }
   ]
 }
 ```
 
-Now attach this role:
+Agora atribua esse role:
 
     aws iam put-role-policy --role-name CWLtoKinesisRole --policy-name Permissions-Policy-For-CWL --policy-document file://permissions.json
 
-The last step is to create the actual subscription that will write the FlowLogs to Kinesis:
+O último passo é criar uma subscription  que irá escrever o FlowLogs para o Kinesis:
 
 ```
 aws logs put-subscription-filter \
     --filter-name "MatchAllValidFilter" \
     --filter-pattern "OK" \
     --log-group-name "my-flowlogs" \
-    --destination-arn "[YOUR KINESIS STREAM ARN HERE]" \
-    --role-arn "[YOUR IAM ARN HERE]"
+    --destination-arn "[SEU ARN STREAM DO KINESIS AQUI]" \
+    --role-arn "[SUA ARN DO IAM AQUI]"
 ```
 
-You should now see FlowLogs being written into your Kinesis stream.
+Agora você deve ver FlowLogs sendo escrito em seu Stream Kinesis.
 
-### Step 4: Launch input
+### Etapa 4: iniciar  Entrada(Input)
 
-Now go into the Graylog Web Interface and start a new *AWS FlowLogs input*. It will ask you for some simple parameters like the Kinesis Stream name you are writing your FlowLogs to.
+Agora entre na interface  Web do Graylog e comece uma nova *Entrada AWS FlowLogs*. Ele irá pedir-lhe alguns parâmetros simples, como o “nome” do Kinesis Stream ao qual você está escrevendo o FlowLogs.
 
-You should see something like this in your `graylog-server` log file after starting the input:
+Você deve ver algo assim no arquivo de log do `graylog-server` depois de iniciar a entrada:
 
 ```
 2017-06-03T15:22:43.376Z INFO  [InputStateListener] Input [AWS FlowLogs Input/5932d443bb4feb3768b2fe6f] is now STARTING
@@ -197,46 +194,46 @@ You should see something like this in your `graylog-server` log file after start
 2017-06-03T15:23:44.277Z INFO  [Worker] Sleeping ...
 ```
 
-**It will take a few minutes until the first logs are coming in.**
+**Levará alguns minutos até os primeiros registros entrarem.**
 
-**Important: AWS delivers the FlowLogs with a few minutes delay and not always in an ordered fashion. Keep this in mind when searching over messages in a recent time frame.**
+**Importante: A AWS entrega o FlowLogs com alguns minutos de atraso e nem sempre de uma forma ordenada. Tenha isso em mente ao pesquisar sobre mensagens em um frame de tempo recente.**
 
-## CloudTrail setup and configuration
+##  configuração do CloudTrail
 
-### Step 1: Enabling CloudTrail for an AWS region
+### Etapa 1: ativando o CloudTrail para uma região AWS
 
-Start by enabling CloudTrail for an AWS region:
+Comece habilitando CloudTrail para uma região AWS:
 
 ![Configuring CloudTrail](https://raw.githubusercontent.com/Graylog2/graylog-plugin-aws/master/images/plugin-aws-input-1.png)
 
 * **Create a new S3 bucket:** Yes
-* **S3 bucket:** Choose anything here, you do not need it for configuration of Graylog later
-* **Log file prefix:** Optional, not required for Graylog configuration
-* **Include global services:** Yes (you might want to change this when using CloudTrail in multiple AWS regions)
+* **S3 bucket:** Escolha qualquer coisa aqui, você não precisa disso para a configuração do Graylog mais tarde
+* **Log file prefix:** Opcional, não é necessário para a configuração Graylog
+* **Include global services:** Yes (você pode querer mudar isso ao usar CloudTrail em várias regiões AWS)
   * **SNS notification for every log file delivery:** Yes
-  * **SNS topic:** Choose something like *cloudtrail-log-write* here. Remember the name.
+  * **SNS topic:** Escolha algo como * cloudtrail-log-write * aqui. Lembre-se do nome.
 
-### Step 2: Set up SQS for CloudTrail write notifications
+### Step 2: Configure SQS para notificações de gravação CloudTrail
 
-Navigate to the AWS SQS service (in the same region as the just enabled CloudTrail) and hit **Create New Queue**.
+Navegue até o serviço AWS SQS (na mesma região que o CloudTrail ativado) e pressione **Create New Queue**.
 
 ![Creating a SQS queue](https://raw.githubusercontent.com/Graylog2/graylog-plugin-aws/master/images/plugin-aws-input-2.png)
 
-You can leave all settings on their default values for now but write down the **Queue Name** because you will need it for the Graylog configuration later. Our recommended default value is *cloudtrail-notifications*.
+Você pode deixar todas as configurações em seus valores padrão por enquanto, mas anote o **Queue Name** porque você precisará para a configuração Graylog mais tarde. Nosso valor padrão recomendado é *cloudtrail-notifications*.
 
-CloudTrail will write notifications about log files it wrote to S3 to this queue and Graylog needs this information. Let’s subscribe the SQS queue to the CloudTrail SNS topic you created in the first step now:
+CloudTrail irá escrever notificações sobre os arquivos de log que escreveu para o S3 para esta fila e o Graylog precisa dessas informações. Vamos assinar a fila SQS no tópico CloudTrail SNS que você criou na primeira etapa agora:
 
 ![Subscribing SQS queue to SNS topic](https://raw.githubusercontent.com/Graylog2/graylog-plugin-aws/master/images/plugin-aws-input-3.png)
 
-Right click on the new queue you just created and select *Subscribe Queue to SNS Topic*. Select the SNS topic that you configured in the first step when setting up CloudTrail. **Hit subscribe and you are all done with the AWS configuration.**
+Clique com o botão direito do mouse na nova fila que você acabou de criar e selecione *Subscribe Queue to SNS Topic*. Selecione o tópico SNS que você configurou no primeiro passo ao configurar CloudTrail. **Acerte se inscreva e você terá completado  a configuração AWS.**
 
-### Step 3: Install and configure the Graylog CloudTrail plugin
+### Passo 3: Instale e configure o plugin Graylog CloudTrail
 
-Copy the `.jar` file that you received to your Graylog plugin directory which is configured in your `graylog.conf` configuration file using the `plugin_dir` variable.
+Copie o arquivo `.jar` que você recebeu no seu diretório do plugin Graylog que está configurado no arquivo de configuração` graylog.conf` usando a variável `plugin_dir`.
 
-Restart `graylog-server` and you should see the new input type *AWS CloudTrail Input* at *System -> Inputs -> Launch new input*. The required input configuration should be self-explanatory.
+Reinicie `graylog-server` e você deve ver o novo tipo de entrada * AWS CloudTrail Input * em * System -> Inputs -> Launch new input *. A configuração de entrada necessária deve ser auto-explicativa.
 
-**Important:** The IAM user you configured in “System -> Configurations” has to have permissions to read CloudTrail logs from S3 and write notifications from SQS:
+**Importante:** O usuário IAM que você configurou em “System -> Configurations” tem permissões para ler os logs CloudTrail do S3 e escrever notificações do SQS:
 
 ```json
 {
@@ -275,33 +272,33 @@ Restart `graylog-server` and you should see the new input type *AWS CloudTrail I
 }
 ```
 
-(Make sure to replace *resource* values with the actual ARNs of your environment)
+(Certifique-se de substituir os valores * resource * por ARNs reais do seu ambiente)
 
-**More required IAM roles:** The way we communicate with Kinesis requires us to store some metadata in AWS DynamoDB and we are also writing some metrics back to AWS CloudWatch. For this to work you have to attach the following standard AWS IAM policies to your AWS API user:
+**Mais roles IAM necessários:** A maneira como nos comunicamos com a Kinesis nos obriga a armazenar alguns metadados no AWS DynamoDB e também estamos escrevendo algumas métricas para a AWS CloudWatch. Para que isso funcione, você deve anexar as seguintes políticas AWS IAM padrão ao seu usuário da AWS API:
 
 * CloudWatchFullAccess
 * AmazonDynamoDBFullAccess
 * AmazonKinesisReadOnlyAccess
 
-**Note that these are very open standard permissions.** We recommend to use them for a test setup but further boil them down to only allow  access (read+write) to the DynamoDB table we automatically created (you'll see it in the list of tables) and also to only call `cloudwatch:PutMetricData`. How to get the ARNs and how to create custom policies would be out of scope for this guide.
+**Observe que estas são permissões padrão muito abertas. ** Recomendamos usá-las para uma configuração de teste, mas também as reduzirem para permitir apenas o acesso (leitura + gravação) à tabela DynamoDB que criamos automaticamente (você a verá na lista de tabelas) e também para chamar `cloudwatch: PutMetricData`. Como obter as ARNs e como criar políticas personalizadas ficaria fora do escopo deste guia.
 
-## Usage
+## Uso
 
-You should see CloudTrail messages coming in after launching the input. (Note that it can take a few minutes based on how frequent systems are accessing your AWS resource) **You can even stop Graylog and it will catch up with all CloudTrail messages that were written since it was stopped when it is started a!gain.**
+Você deve ver as mensagens do CloudTrail entrar depois de iniciar a entrada. (Observe que pode demorar alguns minutos com base em quantos sistemas freqüentes acessam seu recurso AWS) ** Você pode até parar o Graylog e alcançará todas as mensagens do CloudTrail que foram escritas desde que foi interrompido quando ele foi iniciado novamente. * *
 
-**Now do a search in Graylog. Select “Search in all messages” and search for:** `source:"aws-cloudtrail"`
+**Agora faça uma pesquisa no Graylog. Selecione “Search in all messages” and search for:** `source:"aws-cloudtrail"`
 
-## Build
+## Construir
 
-This project is using Maven 3 and requires Java 8 or higher.
+Este projeto está usando Maven 3 e requer Java 8 ou superior.
 
-You can build a plugin (JAR) with `mvn package`.
+Você pode criar um plugin (JAR) com `mvn package`.
 
-DEB and RPM packages can be build with `mvn jdeb:jdeb` and `mvn rpm:rpm` respectively.
+Os pacotes DEB e RPM podem ser compilados com `mvn jdeb:jdeb` e` mvn rpm:rpm` respectivamente.
 
-## Plugin Release
+## Versão do Plugin
 
-We are using the maven release plugin:
+Estamos usando o  maven  para gerar uma versão do plugin:
 
 ```
 $ mvn release:prepare
@@ -309,4 +306,4 @@ $ mvn release:prepare
 $ mvn release:perform
 ```
 
-This sets the version numbers, creates a tag and pushes to GitHub. Travis CI will build the release artifacts and upload to GitHub automatically.
+Isso configura os números de versão, cria uma tag e empurra para o GitHub. A Travis CI irá construir os artefatos de lançamento e fazer o upload para o GitHub automaticamente.
