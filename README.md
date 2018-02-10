@@ -23,7 +23,7 @@ Compatibilidade da versão do Graylog
 
 ## Instalação
 
-> Desde Graylog Versão 2.4.0 este plugin já está incluído no pacote de instalação do servidor Graylog como plugin padrão.
+> Desde a Versão 2.4.0 do Graylog este plugin já está incluído no pacote de instalação do servidor Graylog como plugin padrão.
 
 [Baixe o plugin](https://github.com/Graylog2/graylog-plugin-aws/releases)
 e coloque o arquivo `.jar`   no seu diretório de plugins do Graylog. O diretório de plugin é a pasta relativa `plugins/`  de seu diretório do  `graylog-server`  por  padrão e pode ser configurado no seu arquivo `graylog.conf`.
