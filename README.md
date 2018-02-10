@@ -35,9 +35,9 @@ Reinicie `graylog-server` e  e pronto.
 Depois de instalar o plugin, você terá uma nova seção de configuração do cluster em  “System -> Configurations” na sua interface  Web do seu Graylog. Certifique-se de completar a configuração antes de usar qualquer um dos módulos que este plugin fornece. Você verá muitos avisos no arquivo de log do `graylog-server` se você não conseguir fazê-lo.
 
 
-### Tradução da entidade AWS
+### Inserindo logs de recursos AWS
 
-A configuração deste plugin possui um parâmetro que controla se as informações do recurso AWS estão sendo executadas  ou não. Isso basicamente significa que o plugin tentará encontrar determinados campos como um endereço IP de origem e enriquecer a mensagem de log com mais informações sobre o recurso AWS (como um  EC2, uma instância ELB, um banco de dados RDS, ...) automaticamente.
+A configuração deste plugin possui um parâmetro que controla se as logs de recurso AWS estão sendo inseridos  ou não. Isso basicamente significa que o plugin tentará encontrar determinados campos como um endereço IP de origem e enriquecer a mensagem de log com mais informações sobre o recurso AWS (como um  EC2, uma instância ELB, um banco de dados RDS, ...) automaticamente.
 
 Isso seria algo assim:
 
