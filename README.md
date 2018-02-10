@@ -6,9 +6,9 @@
 
 Este plugin fornece os seguintes módulos Graylog:
 
-* plugin de entrada de Logs para [AWS Flow ](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/flow-logs.html) logs de conexão de interface de rede
-* plugin de e entrada  para [AWS Logs](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/WhatIsCloudWatchLogs.html)
-* plugin de entrada para [AWS CloudTrail](http://aws.amazon.com/cloudtrail/) logs
+* plugin de entrada de Logs para [AWS Flow ](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/flow-logs.html)  de conexão de interface de rede
+* plugin de e entrada  logs para [AWS Logs](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/WhatIsCloudWatchLogs.html)
+* plugin de entrada  logs para [AWS CloudTrail](http://aws.amazon.com/cloudtrail/) 
 
 Compatibilidade da versão do Graylog
 -----------------------------
