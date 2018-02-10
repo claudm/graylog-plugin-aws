@@ -78,7 +78,7 @@ Aqui estão as permissões IAM necessárias caso você decida usar esse recurso:
 
 ## configuração do FlowLogs
 
-Os exemplos de integração e análise do Flow Logs estão descritos em [neste post no blog www.itculate.io](https://www.itculate.io/documentation/knowledge-base/kb-0109/).
+Os exemplos de integração e análise do Flow Logs estão descritos [neste post no blog www.itculate.io](https://www.itculate.io/documentation/knowledge-base/kb-0109/).
 
 ### Passo 1: Habilitar Flow Logs
 
