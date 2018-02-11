@@ -24,6 +24,7 @@ Compatibilidade da versão do Graylog
 
 ## Instalação
 
+
 Instale o graylog ou use uma imagem iam do graylog
 
 Adicione uma role somente com as permissões  para  acesso aos recursos  necessários para execução dos procedimentos na instãncia ec2   após a execução dos procedimentos mantenha  somente os acessos necessários , os recursos usados no procedimento são :
