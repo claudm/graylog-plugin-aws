@@ -1,5 +1,6 @@
 ﻿# Plug-in AWS para Graylog
 
+
 [![Build Status](https://travis-ci.org/Graylog2/graylog-plugin-aws.svg)](https://travis-ci.org/Graylog2/graylog-plugin-aws)
 [![Github Downloads](https://img.shields.io/github/downloads/Graylog2/graylog-plugin-aws/total.svg)](https://github.com/Graylog2/graylog-plugin-aws/releases)
 [![GitHub Release](https://img.shields.io/github/release/Graylog2/graylog-plugin-aws.svg)](https://github.com/Graylog2/graylog-plugin-aws/releases)
@@ -22,6 +23,17 @@ Compatibilidade da versão do Graylog
 | 0.6.0          | 2.0.x           |
 
 ## Instalação
+
+Instale o graylog ou use uma imagem iam do graylog
+
+Adicione uma role somente com as permissões  para  acesso aos recursos  necessários para execução dos procedimentos na instãncia ec2   após a execução dos procedimentos mantenha  somente os acessos necessários , os recursos usados no procedimento são :
+
+ Cloudwatch
+AmazonDynamodb
+ AmazonKinesis
+
+* Obs: Não vou explicar  o perigo de  criar role com  acessos indevidos, apenas tenha cuidado  para  não liberar acesso total aos recursos e esquecer de remove-los ,  na documentação original não tem procedimento de liberação de acesso mas o acesso ao  stream do Kinesis após a criação do stream   é somente leitura e o plugin  somente cria uma tabela no dynamodb  e depois somente grava as informações de integração  do kinesis nela
+
 
 > Desde Graylog Versão 2.4.0 este plugin já está incluído no pacote de instalação do servidor Graylog como plugin padrão.
 
