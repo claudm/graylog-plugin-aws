@@ -143,7 +143,7 @@ Agora, crie uma nova função IAM com as permissões no arquivo que acabamos de 
 
 **Copie o ARN da role que você acabou de criar.** Você vai precisar disso no próximo passo.
 
-Crie um novo arquivo chamado _permissions.json_ e defina ambos ARNs para os ARNs copiados acima:
+Crie um novo arquivo chamado _permissions.json_ e defina ambas ARNs para a ARNs copiadas acima:
 
 ```
 {
