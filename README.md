@@ -29,9 +29,10 @@ Instale o graylog ou use uma imagem iam do graylog
 
 Adicione uma role somente com as permissões  para  acesso aos recursos  necessários para execução dos procedimentos na instãncia ec2   após a execução dos procedimentos mantenha  somente os acessos necessários , os recursos usados no procedimento são :
 
- Cloudwatch
-AmazonDynamodb
- AmazonKinesis
+ Amazon AMI
+ Amazon Cloudwatch
+ Amazon Dynamodb
+ Amazon Kinesis
 
 * Obs: Não vou explicar  o perigo de  criar role com  acessos indevidos, apenas tenha cuidado  para  não liberar acesso total aos recursos e esquecer de remove-los ,  na documentação original não tem procedimento de liberação de acesso mas o acesso ao  stream do Kinesis após a criação do stream   é somente leitura e o plugin  somente cria uma tabela no dynamodb  e depois somente grava as informações de integração  do kinesis nela
 
@@ -143,7 +144,7 @@ Agora, crie uma nova função IAM com as permissões no arquivo que acabamos de 
 
 **Copie o ARN da role que você acabou de criar.** Você vai precisar disso no próximo passo.
 
-Crie um novo arquivo chamado _permissions.json_ e defina ambas ARNs para a ARNs copiadas acima:
+Crie um novo arquivo chamado _permissions.json_ e defina ambas ARNs com as ARNs copiadas acima:
 
 ```
 {
