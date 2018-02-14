@@ -235,7 +235,7 @@ Navegue até o serviço AWS SQS (na mesma região que o CloudTrail ativado) e pr
 
 Você pode deixar todas as configurações em seus valores padrão por enquanto, mas anote o **Queue Name** porque você precisará para a configuração Graylog mais tarde. Nosso valor padrão recomendado é *cloudtrail-notifications*.
 
-CloudTrail irá escrever notificações  que ele escreveu nos arquivos de log  do S3 para esta fila e o Graylog precisa dessas informações. Vamos assinar a fila SQS no tópico CloudTrail SNS que você criou na primeira etapa agora:
+CloudTrail irá escrever notificações  que ele escreveu nos arquivos de log  do S3 para esta fila e o Graylog precisa dessas informações. Vamos criar uma subscrição(Subscription) para a fila SQS no tópico CloudTrail SNS que você criou na primeira etapa agora:
 
 ![Subscribing SQS queue to SNS topic](https://raw.githubusercontent.com/Graylog2/graylog-plugin-aws/master/images/plugin-aws-input-3.png)
 
